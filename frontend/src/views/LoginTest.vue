@@ -29,7 +29,10 @@
 import { ref } from 'vue';
 import { login, getUser, logout } from '../api/auth';
 import { normalizeError } from '../api/errors';
+import { useRouter, useRoute } from 'vue-router';
 
+const router = useRouter();
+const route = useRoute();
 const email = ref('');
 const password = ref('');
 const message = ref('Ready.');
@@ -41,6 +44,8 @@ const handleLogin = async () => {
   try {
     const res = await login(email.value, password.value);
     message.value = `Login: ${res.status}`;
+    const back = route.query.redirect || '/app';
+    router.push(String(back));
   } catch (e) {
     const r = normalizeError(e);
     message.value = `Login Error: ${r.status} ${r.message}`;
