@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class TaskResource extends JsonResource
 {
@@ -19,7 +20,7 @@ class TaskResource extends JsonResource
 			'title' => $this->title,
 			'description' => $this->description,
 			'status' => $this->status,
-			'due_date' => $this->due_date->format('Y-m-d'),
+			'due_date' => Carbon::parse($this->due_date)->format('Y-m-d'),
 		];
 	}
 }
