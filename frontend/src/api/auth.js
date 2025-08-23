@@ -10,7 +10,7 @@ export async function login(email, password) {
 
 // ② 現在ログイン中のユーザー取得
 export function getUser() {
-  return api.get('/api/user');
+  return api.get('/user');
 }
 
 // ③ ログアウト
